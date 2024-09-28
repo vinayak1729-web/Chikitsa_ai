@@ -1,0 +1,16 @@
+- data/
+    ├── intents.json        # Training data for chatbot
+    ├── gemini_ai.py        # Adds knowledge to the dataset using Gemini API
+    ├── training.py         # Script to train the model
+    └── main.py             # Main script to execute the entire project
+- app.py                    # Flask to run the project
+- templates/
+    ├── base.html           # Base template for the web pages
+    ├── login.html          # User login page
+    ├── register.html       # User registration page
+    ├── questionnaire.html  # Questionnaire page (maybe for gathering user info or feedback)
+    └── main.html           # Main interface for the chatbot
+- static/
+    ├── styles.css          # Styling for the website
+    └── scripts.js          # JavaScript for interactive elements
+

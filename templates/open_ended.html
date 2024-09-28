@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Open-Ended Questions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Open-Ended Questions</h1>
+    <form method="POST">
+        {{ form.response.label }}<br>
+        {{ form.response(class="form-control") }}<br>
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Results</h1>
+    <h2>Open-Ended Responses:</h2>
+    <ul>
+        {% for response in open_ended_responses %}
+            <li>{{ response }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Closed-Ended Responses:</h2>
+    <ul>
+        {% for response in closed_ended_responses %}
+            <li>{{ response }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

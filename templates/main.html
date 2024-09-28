@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Chat with Chikitsa</h1>
+        </div>
+        <div class="chat-box" id="chat-box">
+            <!-- Chat messages will be displayed here -->
+        </div>
+        <div class="input-area">
+            <input type="text" id="user_input" placeholder="Type your message...">
+            <button id="send_button">Send</button>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#send_button').click(function() {
+                var userInput = $('#user_input').val();
+                $('#chat-box').append('<div class="message user-message">' + userInput + '</div>');
+                $('#user_input').val('');
+
+                $.post('/chat', { user_input: userInput }, function(data) {
+                    $('#chat-box').append('<div class="message bot-message">' + data.response + '</div>');
+                    $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight); // Scroll to the bottom
+                });
+            });
+
+            // Allow pressing Enter to send the message
+            $('#user_input').keypress(function(e) {
+                if (e.which == 13) {
+                    $('#send_button').click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

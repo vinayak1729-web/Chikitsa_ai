@@ -37,9 +37,6 @@ questions = [
 # Convert the list to a numpy array
 questions_array = np.array(questions)
 
-# Randomly select 10 questions from the array
-random_questions = np.random.choice(questions_array, 10, replace=False)
-
-# Print the randomly selected questions
-for i, question in enumerate(random_questions, 1):
-    print(f"{i}. {question}")
+def get_random_close_questions():
+    questions_array = np.array(questions)
+    return np.random.choice(questions_array, 5, replace=False)

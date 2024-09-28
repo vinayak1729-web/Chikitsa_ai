@@ -1,15 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Closed-Ended Questions</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment Test</title>
 </head>
 <body>
-    <h1>Closed-Ended Questions</h1>
-    <form method="POST">
-        {{ form.response.label }}<br>
-        {{ form.response(class="form-control") }}<br>
-        {{ form.submit(class="btn btn-primary") }}
+    <h1>Assessment Test</h1>
+    <form action="{{ url_for('submit_close_ended') }}" method="POST">
+        {% for question in questions %}
+        <div>
+            <label>{{ question }}</label><br>
+            <input type="radio" name="{{ question }}" value="Yes" required> Yes
+            <input type="radio" name="{{ question }}" value="No" required> No
+        </div>
+        <br>
+        {% endfor %}
+        <button type="submit">Submit</button>
     </form>
 </body>
 </html>

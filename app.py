@@ -198,7 +198,7 @@ def gemini_chat(user_input, history_file="dataset/intents.json"):
         with open('error.log', 'a') as log_file:
             log_file.write(f"{str(e)}\n")
         return "An error occurred. Please try again."
-
+# in excecption the pretained model so if error occurs then it can use the pretrained model 
 # Chat Route
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():

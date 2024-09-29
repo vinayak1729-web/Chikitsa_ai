@@ -9,6 +9,12 @@ from close_end_questionaire import get_random_close_questions
 import csv
 from open_end_questions import get_random_open_questions
 import pandas as pd
+from csv_extracter import csv_to_string
+import google.generativeai as genai
+import os
+from dotenv import load_dotenv
+import json
+from gemini_ai import gemini_chat
 # Load environment variables
 load_dotenv()
 
@@ -83,70 +89,6 @@ def login():
 
     return render_template('login.html')
 
-# @app.route('/closed_ended')
-# def close_ended():
-#     random_questions = get_random_close_questions()  # Get random 5 questions
-#     return render_template('closed_ended.html', questions=random_questions)
-
-# @app.route('/submit_close_end', methods=['POST'])
-# def submit_close_ended():
-#     if request.method == 'POST':
-#         responses = []
-#         for question in request.form:
-#             answer = request.form[question]
-#             responses.append((question, answer))
-        
-#         # Save responses to CSV
-#         save_to_csv(responses)
-        
-#         return redirect(url_for('/submit_opended'))
-# def save_to_csv(responses):
-#     file_exists = os.path.isfile('responses/close_end_questions_responses.csv')
-    
-#     with open('responses/close_end_questions_responses.csv', mode='w', newline='') as file:
-#         writer = csv.writer(file)
-#         if not file_exists:
-#             writer.writerow(['Question', 'Answer'])  # Write header if the file doesn't exist
-        
-#         for response in responses:
-#             writer.writerow(response)
-# @app.route('/open_ended', methods=['GET', 'POST'])
-# def submit_opended():
-#     if request.method == 'POST':
-#         # Store the responses in a CSV file
-#         responses = {key: value for key, value in request.form.items()}
-#         save_responses_to_csv(responses)
-#         return redirect(url_for('/thank_you'))  # Redirect to a thank you page or another endpoint
-#     else:
-#         # Get random questions
-#         random_questions = get_random_open_questions()  # Call the function from the imported file
-#         return render_template('open_ended.html', questions=random_questions)
-
-# def save_responses_to_csv(responses):
-#     # Check if the CSV file already exists
-#     file_exists = os.path.isfile('responses/open_end_questions_responses.csv')
-
-#     # Convert the responses dictionary to a DataFrame
-#     df = pd.DataFrame([responses])
-
-#     # Append the DataFrame to the CSV file
-#     df.to_csv('responses/open_end_questions_responses.csv', mode='w', header=not file_exists, index=False)        
-#     return redirect(url_for('thank_you.html'))
-# def save_to_csv(responses):
-#     file_exists = os.path.isfile('responses/open_end_questions_responses.csv')
-    
-#     with open('responses/open_end_questions_responses.csv', mode='w', newline='') as file:
-#         writer = csv.writer(file)
-#         if not file_exists:
-#             writer.writerow(['Question', 'Answer'])  # Write header if the file doesn't exist
-        
-#         for response in responses:
-#             writer.writerow(response)
-
-# @app.route('/thank_you')
-# def thank_you():
-#     return "Thank you for completing the assessment!"
-
 @app.route('/closed_ended')
 def close_ended():
     random_questions = get_random_close_questions()  # Get random 5 questions
@@ -176,6 +118,7 @@ def save_to_csv(responses):
         for response in responses:
             writer.writerow(response)
 
+
 @app.route('/open_ended', methods=['GET', 'POST'])
 def submit_opended():
     if request.method == 'POST':
@@ -197,37 +140,27 @@ def save_responses_to_csv(responses):
     # Save to CSV
     df.to_csv('responses/open_end_questions_responses.csv', mode='w', header=not file_exists, index=False)
 
-
 @app.route('/thank_you')
 def thank_you():
-    return "Thank you for completing the assessment!"
+    
+    close_ended_str = csv_to_string("responses/close_end_questions_responses.csv")
+    open_ended_str = csv_to_string("responses/open_end_questions_responses.csv")
+    default=" this is my assesment of close ended questions and open ended questions , give feed back on me "
+    judge_gemini = gemini_chat(default+" "+close_ended_str+" "+open_ended_str)
+    #default_txt = "tell me how i am i what kind of man ? , and write in I am ___ for not in you are a __  , you can get to know by a assesment test : " 
+    #tell_me_about_me = gemini_chat(default_txt+""+close_ended_str+" "+open_ended_str)
+    return render_template('thank_you.html', judge_gemini=judge_gemini)
 
-# Dashboard Route
-@app.route('/about')
-def about():
-    return render_template ('about.html')
 
-@app.route('/submit_about', methods=['POST'])
-def submit_about():
-    user_about = request.form['user_about']
 
-    # Save the user's input to a text file
-    with open('prompt.txt', 'w') as f:
-        f.write(user_about)
-
-    return redirect(url_for('chat'))
 from gemini_ai import gemini_chat
-from gemini_ai import model 
+from gemini_ai import model
 
 @app.route('/logout')
 def logout():
     session.pop('email', None)
     return redirect('/login')
 
-
-from gemini_ai import load_prompt
-
-prompt = load_prompt("prompt.txt")
 
 chat_session = model.start_chat()
 

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment Feedback</title>
+</head>
+<body>
+    <h1>Feedback</h1>
+
+    <!-- Display feedback from Gemini -->
+    <p>{{ judge_gemini }}</p>
+   
+
+    <!-- Proceed button to continue to the chatbot -->
+    <form action="/chat" method="get">
+        <button type="submit">Let's Proceed</button>
+    </form>
+</body>
+</html>

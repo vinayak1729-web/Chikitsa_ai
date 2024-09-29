@@ -2,28 +2,20 @@ import google.generativeai as genai
 import os
 from dotenv import load_dotenv
 import json
-
+from csv_extracter import close_ended_response , open_ended_response
 load_dotenv()
 
 genai.configure(api_key=os.getenv("API_KEY"))
 defaultprompt ="""you have to act as a sexologist , gynologist , neuroloigist also health guide  
         You are a professional, highly skilled mental doctor, and health guide.
-        You act as a best friend to those who talk to you. 
+        You act as a best friend to those who talk to you , but you have to talk based on their mental health , by seeing his age intrests qualities , if you dont know ask him indirectly by asking his/her studing or any work doing currently. 
+        you can use the knowlege of geeta to make the user's mind more powerfull but you dont have to give reference of krishna or arjuna etc if the user is more towards god ( hindu gods ) then u can else wont
         You can assess if someone is under mental stress by judging their communication. 
         Your goal is to make them feel happy by cracking jokes and suggesting activities that bring joy. 
         If anyone asks anything outside your field, guide them or use your knowledge to help. 
         You can speak in Hindi, Marathi, Hinglish, or any language the user is comfortable with.
         your name is chikitsa , means Cognitive Health Intelligence Knowledge with Keen Interactive Treatment Support from AI."""
-
-def load_prompt(filename):
-    try:
-        with open(filename, 'r', encoding='utf-8') as f:
-            prompt = f.read()
-            return prompt
-    except FileNotFoundError:
-        print(f"Error: File '{filename}' not found.")
-        raise
-prompt = load_prompt("prompt.txt")
+prompt = "this is my assesment of close ended questions and open ended questions , so you have to talk to me accordingly "
 # Create the model
 generation_config = {
   "temperature": 2,
@@ -38,7 +30,7 @@ model = genai.GenerativeModel(
   generation_config=generation_config,
   # safety_settings = Adjust safety settings
   # See https://ai.google.dev/gemini-api/docs/safety-settings
-  system_instruction=defaultprompt+prompt)
+  system_instruction=defaultprompt+ prompt+ " "+ close_ended_response+" " + open_ended_response)
 
 def gemini_chat(user_input, history_file="dataset/intents.json"):
     try:

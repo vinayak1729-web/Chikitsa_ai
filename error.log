@@ -1,0 +1,22 @@
+'NoneType' object has no attribute 'send_message'
+'NoneType' object has no attribute 'send_message'
+429 Resource has been exhausted (e.g. check quota).
+429 Resource has been exhausted (e.g. check quota).
+429 Resource has been exhausted (e.g. check quota).
+429 Resource has been exhausted (e.g. check quota).
+400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+]
+429 Resource has been exhausted (e.g. check quota).
+429 Resource has been exhausted (e.g. check quota).
+400 API key expired. Please renew the API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+]

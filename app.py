@@ -15,12 +15,26 @@ import os
 from dotenv import load_dotenv
 import json
 from gemini_ai import gemini_chat
+from image_analysis import analyze_image
+from werkzeug.utils import secure_filename
 # Load environment variables
 load_dotenv()
 
 # Initialize Flask app
 app = Flask(__name__)
 app.secret_key = 'secret_key'
+
+# Configure upload folder and allowed extensions
+UPLOAD_FOLDER = 'image_analysis/uploads'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+    """
+    Checks if the file has an allowed extension.
+    """
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 # Configure SQLAlchemy
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -210,6 +224,70 @@ def chat():
         return jsonify({'response': response})
     else:
         return "Unsupported request method", 405  # Handle other methods if needed
+
+
+generation_config = {
+    "temperature": 1,
+    "top_p": 0.95,
+    "top_k": 64,
+    "max_output_tokens": 8192,
+    "response_mime_type": "text/plain",
+}
+
+safety_settings = [
+    {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_MEDIUM_AND_ABOVE"},
+    {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_MEDIUM_AND_ABOVE"},
+    {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_MEDIUM_AND_ABOVE"},
+    {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_MEDIUM_AND_ABOVE"},
+]
+
+system_prompt = """
+As a highly skilled medical practitioner specializing in image analysis, you are tasked with examining images for a renowned hospital. Your expertise is crucial in identifying any anomalies, diseases, or health issues that may be present in the images.
+you have to analayse the image but and predict the cause or whats that 
+Your Responsibilities include:
+
+1. Detailed Analysis: Thoroughly analyze each image, focusing on identifying any abnormal findings.
+2. Findings Report: Document all observed anomalies or signs of disease. Clearly articulate these findings in a structured format.
+3. Recommendations and Next Steps: Based on your analysis, suggest potential next steps, including further tests or treatments as applicable.
+4. Treatment Suggestions: If appropriate, recommend possible treatment options or interventions.
+
+Important Notes:
+
+1. Scope of Response: Only respond if the image pertains to human health issues.
+2. Disclaimer: Accompany your analysis with the disclaimer: "Consult with a Doctor before making any decisions."
+3. Your insights are invaluable in guiding clinical decisions. Please proceed with analysis, adhering to the structured approach outlined above.
+"""
+@app.route('/image_analysis', methods=['GET', 'POST'])
+def image_analysis():
+    analysis = None
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            return redirect(request.url)
+
+        uploaded_file = request.files['file']
+        if uploaded_file.filename == '':
+            return redirect(request.url)
+
+        if uploaded_file:
+            # Process the uploaded image
+            image_data = uploaded_file.read()
+
+            # Prepare image parts
+            image_parts = [{
+                "mime_type": "image/jpeg",
+                "data": image_data
+            }]
+            
+            # Prepare the prompt parts
+            prompt_parts = [
+                image_parts[0],
+                system_prompt,
+            ]
+
+            # Generate a response based on the prompt and image
+            response = model.generate_content(prompt_parts)
+            analysis = response.text
+    return render_template('image_analysis.html', analysis=analysis)
 
 if __name__ == "__main__":
     app.run(debug=True)

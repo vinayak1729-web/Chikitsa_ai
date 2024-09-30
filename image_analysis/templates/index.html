@@ -1,20 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Dr. Bot</title>
-    <link rel="icon" type="image/png" href="https://www.flaticon.com/svg/static/icons/svg/1055/1055686.svg">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Image Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            text-align: center;
+        }
+        header {
+            background-color: #007BFF;
+            padding: 20px;
+            color: white;
+            font-size: 24px;
+        }
+        main {
+            padding: 30px;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        input[type="file"] {
+            margin: 10px;
+            padding: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1>🏥 Dr. Bot 🤖: Your Virtual Medical Companion 💊🩺</h1>
-    <h2>An application that can help users to identify medical problems</h2>
-    <form method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept=".png, .jpg, .jpeg">
-        <input type="submit" value="Upload and Analyze">
-    </form>
-    {% if response %}
-        <h1>Here is the analysis based on your image</h1>
-        <img src="{{ url_for('static', filename=filename) }}" alt="Uploaded Medical Image" width="250">
-        <p>{{ response }}</p>
-    {% endif %}
+    <header>
+        Medical Image Analysis Tool
+    </header>
+    <main>
+        <div class="container">
+            <h2>Upload an Image for Analysis</h2>
+            <form method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" accept="image/*" required>
+                <br>
+                <button type="submit">Analyze Image</button>
+            </form>
+        </div>
+        
+        {% if analysis %}
+        <div class="result">
+            <h3>Analysis Result:</h3>
+            <p>{{ analysis }}</p>
+        </div>
+        {% endif %}
+    </main>
 </body>
 </html>

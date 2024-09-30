@@ -46,6 +46,24 @@
         button:hover {
             background-color: #0056b3; /* Darker color on hover */
         }
+        
+        footer {
+            position: fixed; /* Fix to bottom */
+            left: 0; /* Align to left */
+            bottom: 0; /* Align to bottom */
+            background-color: #ffffff; /* Light blue background */
+            padding: 10px; /* Padding */
+            width: 100%; /* Full width */
+            text-align: left; /* Left align text */
+            font-size: 14px; /* Smaller font size */
+            border-top: 1px solid #ccc; /* Top border */
+        }
+        footer img {
+            height: 20px; /* Height of logo */
+            margin-right: 5px; /* Space to the right of logo */
+            vertical-align: middle; /* Center align */
+        }
+
     </style>
 </head>
 <body>
@@ -61,4 +79,9 @@
         <button type="submit">Let's Proceed</button>
     </form>
 </body>
+<footer>
+    <img src="{{ url_for('static', filename='suryaprabha.jpeg') }}" alt="Logo"> <!-- Path to your logo -->
+    <span>Made with Gemini, by Team Surya Prabha</span>
+</footer>
+
 </html>

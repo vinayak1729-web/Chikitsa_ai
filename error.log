@@ -18,3 +18,5 @@ safety_ratings {
 }
 
 Invalid input: 'content' argument must not be empty. Please provide a non-empty value.
+429 Resource has been exhausted (e.g. check quota).
+429 Resource has been exhausted (e.g. check quota).

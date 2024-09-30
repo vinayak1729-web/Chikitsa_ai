@@ -289,5 +289,51 @@ def image_analysis():
             analysis = response.text
     return render_template('image_analysis.html', analysis=analysis)
 
+
+@app.route('/talk_to_me')
+def talk_to_me_page():
+    return render_template('talk_to_me.html')
+@app.route('/talk_to_me', methods=['POST'])
+def talk_to_me():
+    user_input = request.form['user_input']
+
+    try:
+        # Start the chat session
+        chat_session = model.start_chat()
+        
+        # Send the user input to the model
+        response = chat_session.send_message(user_input)
+        bot_response = response.text.strip()
+
+        # Log the conversation (optional)
+        log_conversation(user_input, bot_response)
+
+        return jsonify({'response': bot_response})
+
+    except Exception as e:
+        print(f"Error during chat: {e}")
+        return jsonify({'response': 'An error occurred. Please try again.'})
+
+def log_conversation(user_input, bot_response, history_file="dataset/intents.json"):
+    # Load or initialize intents data
+    if os.path.exists(history_file):
+        with open(history_file, 'r') as f:
+            intents_data = json.load(f)
+    else:
+        intents_data = {"intents": []}
+
+    # Create a new intent object
+    new_intent = {
+        "patterns": [user_input],
+        "responses": [bot_response],
+    }
+
+    # Append the new intent
+    intents_data['intents'].append(new_intent)
+
+    # Save the updated intents JSON file
+    with open(history_file, 'w') as f:
+        json.dump(intents_data, f, indent=4)
+
 if __name__ == "__main__":
     app.run(debug=True)

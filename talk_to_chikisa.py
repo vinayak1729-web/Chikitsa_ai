@@ -2,11 +2,14 @@ import google.generativeai as genai
 import os
 from dotenv import load_dotenv
 import json
+from speak import speak
+from listen import MicExecution
 from csv_extracter import close_ended_response , open_ended_response
 load_dotenv()
 
 genai.configure(api_key=os.getenv("API_KEY"))
-defaultprompt ="""you have to act as a sexologist , gynologist , neuroloigist also health guide  
+defaultprompt ="""you have to act as a sexologist , gynologist , neuroloigist also health guide 
+        here avoid emogies else use text 
         You are a professional, highly skilled mental doctor, and health guide.
         You act as a best friend to those who talk to you , but you have to talk based on their mental health , by seeing his age intrests qualities , if you dont know ask him indirectly by asking his/her studing or any work doing currently. 
         you can use the knowlege of geeta to make the user's mind more powerfull but you dont have to give reference of krishna or arjuna etc if the user is more towards god ( hindu gods ) then u can else wont
@@ -71,13 +74,13 @@ if __name__ == "__main__":
 
         # Example usage
         while True:
-            user_input = input("You: ")
+            user_input = MicExecution()
             if user_input.lower() == 'exit':
                 print("Chat ended.")
                 break
 
             response = gemini_chat(user_input)
-            print("Chikitsa:", response)
+            speak(response)
 
     except Exception as e:
         print(f"Failed to start the chat session: {e}")

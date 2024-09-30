@@ -19,21 +19,20 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" action="/chat" method="get">Chat with me?</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" action="/login" method="get">Login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link "action="/talk" method="get" >Talk to me?</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " action="/image_analayse" method="get">Image analysis</a>
-              </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ url_for('chat') }}">Chat with me?</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('talk_to_me_page') }}">Talk to me?</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('image_analysis') }}">Image analysis</a>
+                </li>
             </ul>
-          </div>
-        </div>
+        </div></div>
       </nav>
     <div class="container">
         <div class="header">

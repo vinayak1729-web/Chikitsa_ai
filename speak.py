@@ -5,8 +5,8 @@ def speak(text, accent="en-IN"):
         engine = pyttsx3.init()
         voices = engine.getProperty('voices')
         for voice in voices:
-            if "female" in voice.name.lower():
-                engine.setProperty('voice', voice.id)
+            
+                engine.setProperty('voice', voice.id[7])
                 break
 
         engine.setProperty('rate', 150)  # Adjust the speaking rate
@@ -15,12 +15,12 @@ def speak(text, accent="en-IN"):
 
         engine.say(text)
         engine.runAndWait()
-        
+
     except Exception as e:
         print(f"pyttsx3 failed: {e}")
 
 
-
+speak(" GANPATI BAPPA MORYA ")
 # from selenium import webdriver
 # from selenium.webdriver.support.ui import Select
 # from selenium.webdriver.chrome.options import Options

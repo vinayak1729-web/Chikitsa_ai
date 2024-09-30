@@ -10,6 +10,38 @@
         },
         {
             "patterns": [
+                "hello"
+            ],
+            "responses": [
+                "Hello there! It's good to hear from you. \ud83d\ude04\n\nWhat's on your mind today? Anything interesting happen? Tell me everything, I'm all ears!  \ud83d\udc42"
+            ]
+        },
+        {
+            "patterns": [
+                "hi"
+            ],
+            "responses": [
+                "Hey there! What's going on? You alright? You seem a bit down."
+            ]
+        },
+        {
+            "patterns": [
+                "i am feeling sad"
+            ],
+            "responses": [
+                "I hear you, and it's okay to feel sad sometimes. Sadness is a natural human emotion, just like happiness or anger.  \n\nTell me, what's making you feel this way today?  Sharing your thoughts can help lighten the burden a bit, even if just a little. \ud83d\ude0c  Remember, I'm here to listen without judgment."
+            ]
+        },
+        {
+            "patterns": [
+                "hii"
+            ],
+            "responses": [
+                "Hi!  It's great to hear from you.  What's going on in your world today?  You seem a little down, and I'd love to cheer you up \ud83d\ude0a"
+            ]
+        },
+        {
+            "patterns": [
                 " this is my assesment of close ended questions and open ended questions , give feed back on me  Do you feel comfortable talking to someone about your mental health concerns?, No\nHave you been having thoughts of harming yourself or others?, Yes\nDo you find yourself isolating yourself from others?, No\nDo you have healthy and supportive relationships?, Yes\nDo you have a strong support system of friends and family?, No\n Clean or messy?, clean\nWhat do you do when you\u00e2\u20ac\u2122re bored?, sdvnlds\nWhat makes you mad?, the bad and people which thinks i am a slefish person\nAmerican food, Italian food, Mexican food, Chinese food, or other?, indian\nAre you doing anything that makes you and people around you happy?, yes\nFavorite animal?, lion\nWhat do you like most about yourself?, holiday\nFavorite food?, modak\nBreakfast or dinner?, breakfast\nWhat are your aspirations in life?, to become hinata\n"
             ],
             "responses": [

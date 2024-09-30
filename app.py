@@ -17,6 +17,7 @@ import json
 from gemini_ai import gemini_chat
 from image_analysis import analyze_image
 from werkzeug.utils import secure_filename
+from trained_chikitsa import chatbot_response
 # Load environment variables
 load_dotenv()
 
@@ -207,11 +208,12 @@ def gemini_chat(user_input, history_file="dataset/intents.json"):
         return response.text
 
     except Exception as e:
-        print(f"Error during chat: {e}")
+       
+        response = chatbot_response(user_input)
         # Optionally log the error to a file
         with open('error.log', 'a') as log_file:
             log_file.write(f"{str(e)}\n")
-        return "An error occurred. Please try again."
+        return response
 # in excecption the pretained model so if error occurs then it can use the pretrained model 
 # Chat Route
 @app.route('/chat', methods=['GET', 'POST'])

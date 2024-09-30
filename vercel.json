@@ -1,11 +1,5 @@
 {
-    "build": {
-      "output": "dist"
-    },
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "dist/index.html"
-      }
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/app" }
     ]
   }

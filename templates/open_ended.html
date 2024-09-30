@@ -1,21 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assessment Test</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Use Poppins font */
+            background-color: #6ab1fd;
+            /* Light background color */
+            color: #333;
+            /* Text color */
+            margin: 0;
+            /* Remove default margin */
+            padding: 20px;
+            /* Add padding */
+        }
+
+        h1 {
+            text-align: center;
+            /* Center the heading */
+            margin-bottom: 30px;
+            /* Space below heading */
+            color: #007bff;
+            /* Heading color */
+        }
+
+        form {
+            max-width: 600px;
+            /* Max width of the form */
+            margin: 0 auto;
+            /* Center the form */
+            padding: 20px;
+            /* Add padding to the form */
+            background-color: #ffffff;
+            /* White background for the form */
+            border-radius: 8px;
+            /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow */
+        }
+
+        div {
+            margin-bottom: 15px;
+            /* Space between questions */
+        }
+
+        label {
+            font-weight: bold;
+            /* Bold labels */
+            display: block;
+            /* Block display for labels */
+            margin-bottom: 5px;
+            /* Space below labels */
+        }
+
+        input[type="text"] {
+            width: 100%;
+            /* Full width input */
+            padding: 10px;
+            /* Padding inside input */
+            border: 1px solid #ccc;
+            /* Border for input */
+            border-radius: 5px;
+            /* Rounded corners for input */
+            font-size: 16px;
+            /* Font size for input */
+        }
+
+        button {
+            display: block;
+            /* Block display for button */
+            width: 100%;
+            /* Full width button */
+            padding: 10px;
+            /* Padding inside button */
+            background-color: #007bff;
+            /* Button background color */
+            color: white;
+            /* Button text color */
+            border: none;
+            /* Remove border */
+            border-radius: 5px;
+            /* Rounded corners for button */
+            cursor: pointer;
+            /* Pointer cursor on hover */
+            font-size: 16px;
+            /* Font size for button */
+        }
+
+        footer {
+            position: fixed;
+            /* Fix to bottom */
+            left: 0;
+            /* Align to left */
+            bottom: 0;
+            /* Align to bottom */
+            background-color: #ffffff;
+            /* Light blue background */
+            padding: 10px;
+            /* Padding */
+            width: 100%;
+            /* Full width */
+            text-align: left;
+            /* Left align text */
+            font-size: 14px;
+            /* Smaller font size */
+            border-top: 1px solid #ccc;
+            /* Top border */
+        }
+
+        footer img {
+            height: 20px;
+            /* Height of logo */
+            margin-right: 5px;
+            /* Space to the right of logo */
+            vertical-align: middle;
+            /* Center align */
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            /* Darker blue on hover */
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Assessment Test</h1>
-    <form action="{{ url_for('submit_opended') }}" method="POST">  <!-- Corrected action here -->
+    <h1 style="color: whitesmoke;">Assessment Test</h1>
+    <form action="{{ url_for('submit_opended') }}" method="POST"> <!-- Corrected action here -->
         {% for question in questions %}
         <div>
             <label>{{ question }}</label><br>
-            <input type="text" name="{{ question }}" placeholder="Enter in complete sentence" required> 
+            <input type="text" name="{{ question }}" placeholder="Enter in complete sentence" required>
         </div>
         <br>
         {% endfor %}
         <button type="submit">Submit</button>
     </form>
 </body>
+<footer>
+    <img src="{{ url_for('static', filename='suryaprabha.jpeg') }}" alt="Logo"> <!-- Path to your logo -->
+    <span>Made with Gemini, by Team Surya Prabha</span>
+</footer>
+
 </html>

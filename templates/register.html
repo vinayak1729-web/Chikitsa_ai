@@ -9,8 +9,86 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+    body {
+        font-family: 'Poppins', sans-serif; /* Use Poppins font */
+        background-color: #6ab1fd; /* Light blue background color */
+    }
+    
+    .navbar {
+        background-color: #ffffff;
+        /* Navbar background color */
+    }
+
+    .navbar-nav .nav-link {
+        color: black;
+        /* Navbar link color */
+    }
+
+    .navbar-nav .nav-link {
+        color: black;
+        /* Navbar link color */
+        transition: background-color 0.3s, box-shadow 0.3s;
+        /* Smooth transition */
+    }
+
+    .navbar-nav .nav-link:hover {
+        background-color: #308ef1; /* Darker blue on hover */
+        color: white; 
+        
+        /* Navbar link hover color */
+        box-shadow: 0 0 10px rgb(0, 179, 255), 0 0 20px rgba(255, 255, 255, 0.5);
+        /* Glow effect */
+    }
+
+    footer {
+        position: fixed; /* Fix to bottom */
+        left: 0; /* Align to left */
+        bottom: 0; /* Align to bottom */
+        background-color: #ffffff; /* Light blue background */
+        padding: 10px; /* Padding */
+        width: 100%; /* Full width */
+        text-align: left; /* Left align text */
+        font-size: 14px; /* Smaller font size */
+        border-top: 1px solid #ccc; /* Top border */
+    }
+    footer img {
+        height: 20px; /* Height of logo */
+        margin-right: 5px; /* Space to the right of logo */
+        vertical-align: middle; /* Center align */
+    }
+    .container{
+        text-align: center;
+        align-items: center;
+    }
+</style>
 <body>
 
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="color: black;">CHIKITSA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="/chat">Chat</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="/image_analysis">Image Analysis</a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
 <div class="container">
     <div class=" row justify-content-center">
         <div class="col-sm-6 mt-4">
@@ -40,4 +118,10 @@
 </div>
 
 </body>
+
+<footer>
+    <img src="{{ url_for('static', filename='suryaprabha.jpeg') }}" alt="Logo"> <!-- Path to your logo -->
+    <span>Made with Gemini, by Team Surya Prabha</span>
+</footer>
+
 </html>

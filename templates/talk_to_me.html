@@ -1,57 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Use Poppins font */
+            background-color: #6ab1fd;
+            /* Light blue background color */
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            /* Navbar background color */
+        }
+
+        .navbar-nav .nav-link {
+            color: black;
+            /* Navbar link color */
+        }
+
+        .navbar-nav .nav-link {
+            color: black;
+            /* Navbar link color */
+            transition: background-color 0.3s, box-shadow 0.3s;
+            /* Smooth transition */
+        }
+
+        .navbar-nav .nav-link:hover {
+            background-color: #308ef1; /* Darker blue on hover */
+            color: white; 
+            
+            /* Navbar link hover color */
+            box-shadow: 0 0 10px rgb(0, 179, 255), 0 0 20px rgba(255, 255, 255, 0.5);
+            /* Glow effect */
+        }
+
+        #textarea {
+            height: 400px;
+            /* Set height for messages area */
+            overflow-y: scroll;
+            /* Enable scrolling */
+            border: 1px solid #ccc;
+            /* Border for the messages area */
+            padding: 10px;
+            /* Padding inside messages area */
+            background-color: #ffffff;
+            /* White background for messages */
+        }
+
+        .user-msg {
+            text-align: right;
+            /* Align user messages to the right */
+            background-color: #d1e7dd;
+            /* Light green background for user messages */
+            padding: 8px;
+            /* Padding for user messages */
+            border-radius: 5px;
+            /* Rounded corners for user messages */
+            margin: 5px 0;
+            /* Margin for spacing */
+        }
+
+        .bot-msg {
+            text-align: left;
+            /* Align bot messages to the left */
+            background-color: #f8d7da;
+            /* Light red background for bot messages */
+            padding: 8px;
+            /* Padding for bot messages */
+            border-radius: 5px;
+            /* Rounded corners for bot messages */
+            margin: 5px 0;
+            /* Margin for spacing */
+        }
+
+        .input-container {
+            display: flex;
+            /* Flexbox for input area */
+            margin-top: 10px;
+            /* Margin for spacing */
+        }
+
+        .input-container input {
+            flex: 1;
+            /* Allow input to take available space */
+            margin-right: 5px;
+            /* Space between input and button */
+        }
+
+        footer {
+            position: fixed;
+            /* Fix to bottom */
+            left: 0;
+            /* Align to left */
+            bottom: 0;
+            /* Align to bottom */
+            background-color: #ffffff;
+            /* Light blue background */
+            padding: 10px;
+            /* Padding */
+            width: 100%;
+            /* Full width */
+            text-align: left;
+            /* Left align text */
+            font-size: 14px;
+            /* Smaller font size */
+            border-top: 1px solid #ccc;
+            /* Top border */
+        }
+
+        footer img {
+            height: 20px;
+            /* Height of logo */
+            margin-right: 5px;
+            /* Space to the right of logo */
+            vertical-align: middle;
+            /* Center align */
+        }
+    </style>
     <title>Talk with Me</title>
 </head>
+
 <body>
-    
+
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ url_for('chat') }}">Chat with me?</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('login') }}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('talk_to_me_page') }}">Talk to me?</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('image_analysis') }}">Image analysis</a>
-                </li>
-            </ul>
+            <a class="navbar-brand" href="#">CHIKITSA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('chat') }}">Chat with me?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('talk_to_me_page') }}">Talk to me?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('image_analysis') }}">Image analysis</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        </div>
-      </nav>
+    </nav>
+
     <div class="container">
-        <h1>Chikitsa Welcomes You</h1>
-        <div id="chat-window">
+        <h1 class="mt-4" style="color: white;">Chikitsa Welcomes You</h1>
+        <div id="textarea">
             <div id="messages"></div>
         </div>
         <div class="input-container">
             <input type="text" id="user-input" placeholder="Type your message here..." autofocus>
-            <button id="send-btn">Send</button>
-            <button id="mic-btn">🎤</button> <!-- Microphone button -->
+            <button id="send-btn" class="btn btn-dark">Send</button>
+            <button id="mic-btn" class="btn btn-light">🎤</button> <!-- Microphone button -->
         </div>
     </div>
+
+    <footer>
+        <img src="{{ url_for('static', filename='suryaprabha.jpeg') }}" alt="Logo"> <!-- Path to your logo -->
+        <span>Made with Gemini, by Team Surya Prabha</span>
+    </footer>
+
     <script>
-        document.getElementById('send-btn').onclick = function() {
+        document.getElementById('send-btn').onclick = function () {
             sendMessage();
         };
 
-        document.getElementById('mic-btn').onclick = function() {
+        document.getElementById('mic-btn').onclick = function () {
             startListening();
         };
 
@@ -68,12 +197,12 @@
                 },
                 body: `user_input=${encodeURIComponent(userInput)}`
             })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('messages').innerHTML += `<div class="bot-msg">${data.response}</div>`;
-                speak(data.response); // Speak the bot's response
-            })
-            .catch(error => console.error('Error:', error));
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('messages').innerHTML += `<div class="bot-msg">${data.response}</div>`;
+                    speak(data.response); // Speak the bot's response
+                })
+                .catch(error => console.error('Error:', error));
         }
 
         function startListening() {
@@ -84,18 +213,18 @@
 
             recognition.start();
 
-            recognition.onresult = function(event) {
+            recognition.onresult = function (event) {
                 const userInput = event.results[0][0].transcript;
                 document.getElementById('messages').innerHTML += `<div class="user-msg">${userInput}</div>`;
                 document.getElementById('user-input').value = userInput; // Set input value for sending
                 sendMessage(); // Send the message after listening
             };
 
-            recognition.onerror = function(event) {
+            recognition.onerror = function (event) {
                 console.error('Error occurred in recognition: ' + event.error);
             };
 
-            recognition.onend = function() {
+            recognition.onend = function () {
                 console.log('Speech recognition service has stopped.');
             };
         }
@@ -106,4 +235,5 @@
         }
     </script>
 </body>
+
 </html>

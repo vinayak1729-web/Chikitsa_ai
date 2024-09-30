@@ -10,6 +10,94 @@
         },
         {
             "patterns": [
+                "hii"
+            ],
+            "responses": [
+                "Hii! \ud83d\udc4b  It's good to hear from you again.  What's on your mind today? \ud83d\ude0a"
+            ]
+        },
+        {
+            "patterns": [
+                " this is my assesment of close ended questions and open ended questions , give feed back on me  Have you been experiencing feelings of inadequacy or worthlessness?, Yes\nDo you use any substances, such as alcohol or drugs?, No\nAre you able to express your feelings openly and honestly?, No\nHave you been having thoughts of harming yourself or others?, Yes\nDo you struggle with flashbacks or nightmares?, No\n Describe yourself in three words., i am ambivert , humerous , pervert\nHow many promises have you made this past year and how many of them have you fulfilled?, 0\nIf happiness was a currency, how rich would you be?, middle class level\nWhat\u00e2\u20ac\u2122s the difference between religion and spirituality?, atheist\nWhat\u00e2\u20ac\u2122s the one thing you really want to do but have never done, and why?, bdsm\nWhen is the last time you failed at something? How did you handle it?, sih hackathon , i wont selected \nWhat would you do if you won the lottery?, shoping\nTell about a problem you have right now. What can you do to solve it?, issue in bonding \nWhat kind of a person do you want to be?, kind , less cunning\nWhat do you need to let go of in life?, social girls issues\n"
+            ],
+            "responses": [
+                "It takes courage to be so open and honest about these feelings, and I appreciate you trusting me with them. Based on what you've shared, it sounds like you're going through a difficult time. You've mentioned feelings of inadequacy, thoughts of harming yourself, and difficulty expressing your feelings. These are serious concerns and it's important to seek help and support. \n\nRemember, asking for help is a sign of strength, not weakness.  It's clear you have a sense of humor and introspection, which are great tools to have when navigating life's challenges.  \n\nHere are a few thoughts:\n\n* **Reach Out:**  It seems you are struggling and bottling things up. Have you considered talking to a therapist or counselor?  They can provide a safe space for you to explore these feelings and develop coping strategies.\n* **Small Steps:** Setting realistic goals and focusing on small achievements can help boost self-esteem and a sense of accomplishment. What's one small thing you can do for yourself today?\n* **Kindness Starts Within:** You mentioned wanting to be kinder and less cunning. Practicing self-compassion is a great starting point. It\u2019s okay to have difficult emotions, be kind to yourself while you navigate through them.\n\n Remember, my purpose is to guide and support. Your mental health is important, and it's okay to seek help. If you'd like to talk more about anything, I'm here for you. \ud83d\ude0a"
+            ]
+        },
+        {
+            "patterns": [
+                "hhu"
+            ],
+            "responses": [
+                "Hey, no worries, sometimes it's hard to put into words. \ud83d\ude0a Take your time. \n\nDo you find yourself feeling anxious in social situations, or is it more of a general feeling that you experience?"
+            ]
+        },
+        {
+            "patterns": [
+                "i am suffering from anxiety"
+            ],
+            "responses": [
+                "I understand that you're dealing with anxiety.  It's important to know that you're not alone, and it's brave of you to acknowledge it. \n\nCan you tell me a little bit about what triggers your anxiety? What kind of situations make it worse for you? \ud83d\ude0a"
+            ]
+        },
+        {
+            "patterns": [
+                "hii"
+            ],
+            "responses": [
+                "Hii! \ud83d\udc4b  What's making your day awesome today? \ud83d\ude0a"
+            ]
+        },
+        {
+            "patterns": [
+                "hello"
+            ],
+            "responses": [
+                "Hello there! Nice to hear from you. \ud83d\ude0a  What's putting a smile on your face today?"
+            ]
+        },
+        {
+            "patterns": [
+                "hello what's up bro"
+            ],
+            "responses": [
+                "Hey bro! Not much, just hanging out in the digital world, what's good with you today? \ud83d\ude0a"
+            ]
+        },
+        {
+            "patterns": [
+                "wssup"
+            ],
+            "responses": [
+                "Not much, just vibing with the good vibes! \u2728 What about you? What's making your day awesome?"
+            ]
+        },
+        {
+            "patterns": [
+                "hi"
+            ],
+            "responses": [
+                "Hi there! It's nice to connect. \ud83d\ude04  What's got you smiling today?"
+            ]
+        },
+        {
+            "patterns": [
+                "hello"
+            ],
+            "responses": [
+                "Hey! What's going on?  Tell me something interesting about your day. \ud83d\ude04"
+            ]
+        },
+        {
+            "patterns": [
+                "hello dude"
+            ],
+            "responses": [
+                "Hey dude! \ud83d\udc4b  What's up? \ud83d\ude0e"
+            ]
+        },
+        {
+            "patterns": [
                 "nothing just roaming around making"
             ],
             "responses": [

@@ -3,15 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assessment Feedback</title>
+    <title>Feedback</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif; /* Font family */
+            background-color: #6ab1fd; /* Light background color */
+            color: #333; /* Dark text color for contrast */
+            text-align: center; /* Center-align text */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+        header {
+            background-color: #007BFF; /* Header background color */
+            padding: 20px; /* Header padding */
+            color: white; /* Header text color */
+            font-size: 24px; /* Header font size */
+            margin-bottom: 20px; /* Space below header */
+        }
+        h1 {
+            margin-top: 20px; /* Space above main heading */
+        }
+        p {
+            font-size: 18px; /* Font size for feedback text */
+            padding: 15px; /* Padding around feedback text */
+            background-color: #e9ecef; /* Light gray background */
+            border-radius: 5px; /* Rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            margin: 20px auto; /* Center align with space above and below */
+            max-width: 600px; /* Max width for better readability */
+        }
+        button {
+            padding: 10px 20px; /* Button padding */
+            background-color: #007BFF; /* Button background color */
+            color: white; /* Button text color */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            font-size: 16px; /* Button font size */
+            transition: background-color 0.3s; /* Transition for hover effect */
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker color on hover */
+        }
+    </style>
 </head>
 <body>
-    <h1>Feedback</h1>
+    <header>
+        <h1>Feedback</h1>
+    </header>
 
     <!-- Display feedback from Gemini -->
     <p>{{ judge_gemini }}</p>
    
-
     <!-- Proceed button to continue to the chatbot -->
     <form action="/chat" method="get">
         <button type="submit">Let's Proceed</button>

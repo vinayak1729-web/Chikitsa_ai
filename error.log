@@ -17,3 +17,4 @@ safety_ratings {
   probability: NEGLIGIBLE
 }
 
+Invalid input: 'content' argument must not be empty. Please provide a non-empty value.

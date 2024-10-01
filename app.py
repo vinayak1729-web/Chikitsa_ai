@@ -341,3 +341,6 @@ def log_conversation(user_input, bot_response, history_file="dataset/intents.jso
     with open(history_file, 'w') as f:
         json.dump(intents_data, f, indent=4)
 
+if __name__ == "__main__":
+    app.run(debug=True)
+    

@@ -1,71 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <title>Feedback</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
         body {
-            font-family: 'Poppins', sans-serif; /* Font family */
-            background-color: #6ab1fd; /* Light background color */
-            color: #333; /* Dark text color for contrast */
-            text-align: center; /* Center-align text */
-            margin: 0; /* Remove default margin */
-            padding: 0; /* Remove default padding */
-        }
-        header {
-            background-color: #007BFF; /* Header background color */
-            padding: 20px; /* Header padding */
-            color: white; /* Header text color */
-            font-size: 24px; /* Header font size */
-            margin-bottom: 20px; /* Space below header */
-        }
-        h1 {
-            margin-top: 20px; /* Space above main heading */
-        }
-        p {
-            font-size: 18px; /* Font size for feedback text */
-            padding: 15px; /* Padding around feedback text */
-            background-color: #e9ecef; /* Light gray background */
-            border-radius: 5px; /* Rounded corners */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-            margin: 20px auto; /* Center align with space above and below */
-            max-width: 600px; /* Max width for better readability */
-        }
-        button {
-            padding: 10px 20px; /* Button padding */
-            background-color: #007BFF; /* Button background color */
-            color: white; /* Button text color */
-            border: none; /* Remove border */
-            border-radius: 5px; /* Rounded corners */
-            cursor: pointer; /* Pointer cursor on hover */
-            font-size: 16px; /* Button font size */
-            transition: background-color 0.3s; /* Transition for hover effect */
-        }
-        button:hover {
-            background-color: #0056b3; /* Darker color on hover */
-        }
-        
-        footer {
-            position: fixed; /* Fix to bottom */
-            left: 0; /* Align to left */
-            bottom: 0; /* Align to bottom */
-            background-color: #ffffff; /* Light blue background */
-            padding: 10px; /* Padding */
-            width: 100%; /* Full width */
-            text-align: left; /* Left align text */
-            font-size: 14px; /* Smaller font size */
-            border-top: 1px solid #ccc; /* Top border */
-        }
-        footer img {
-            height: 20px; /* Height of logo */
-            margin-right: 5px; /* Space to the right of logo */
-            vertical-align: middle; /* Center align */
+            font-family: 'Poppins', sans-serif;
+            background-color: #6ab1fd;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
         }
 
+        header {
+            background-color: #007BFF;
+            padding: 20px;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+        }
+
+        .navbar-nav .nav-link {
+            color: black;
+        }
+
+        .navbar-nav .nav-link:hover {
+            background-color: #308ef1;
+            color: white;
+            box-shadow: 0 0 10px rgb(0, 179, 255), 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            background-color: #ffffff;
+            padding: 10px;
+            width: 100%;
+            text-align: left;
+            font-size: 14px;
+            border-top: 1px solid #ccc;
+        }
+
+        footer img {
+            height: 20px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .thumbs {
+            margin: 20px;
+        }
+
+        .thumbs button {
+            font-size: 24px;
+            padding: 10px;
+            margin: 0 10px;
+        }
+
+        #proceedBtn, #regenerateBtn {
+            display: none;
+            margin-top: 20px;
+            align-items: center;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .feedbtn{
+            text-align: center;
+            align-items: center;
+        }
     </style>
+
+    <script>
+        function handleFeedback(isPositive) {
+            if (isPositive) {
+                document.getElementById('proceedBtn').style.display = 'block';
+                document.getElementById('regenerateBtn').style.display = 'none';
+            } else {
+                document.getElementById('proceedBtn').style.display = 'none';
+                document.getElementById('regenerateBtn').style.display = 'block';
+            }
+        }
+    </script>
 </head>
+
 <body>
     <header>
         <h1>Feedback</h1>
@@ -73,15 +134,39 @@
 
     <!-- Display feedback from Gemini -->
     <p>{{ judge_gemini }}</p>
-   
-    <!-- Proceed button to continue to the chatbot -->
-    <form action="/chat" method="get">
-        <button type="submit">Let's Proceed</button>
+
+    <!-- Thumbs Up/Down Buttons -->
+    <div class="thumbs">
+        <button type="button" class="btn btn-success" onclick="handleFeedback(true)">
+            <i class="fas fa-thumbs-up"></i> 👍
+        </button>
+        
+        <button type="button" class="btn btn-danger" onclick="handleFeedback(false)">
+            <i class="fas fa-thumbs-down"></i> 👎
+        </button>
+    </div>
+
+    <!-- Proceed button (visible when thumbs-up is clicked) -->
+     <div class="feedbtn">
+            <form action="/chat" method="get">
+        <button id="proceedBtn" type="submit" class="btn btn-primary">Let's Proceed</button>
     </form>
+
+    <!-- Regenerate button (visible when thumbs-down is clicked) -->
+    <form action="{{ url_for('thank_you') }}" method="get">
+        <button id="regenerateBtn" type="submit"  class="btn btn-warning">Regenerate Feedback</button>
+    </form>
+</div>
+
+    <br><br>
+
+    <footer>
+        <img src="{{ url_for('static', filename='suryaprabha.jpeg') }}" alt="Logo">
+        <span>Made with Gemini, by Team Surya Prabha</span>
+    </footer>
+
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
-<footer>
-    <img src="{{ url_for('static', filename='suryaprabha.jpeg') }}" alt="Logo"> <!-- Path to your logo -->
-    <span>Made with Gemini, by Team Surya Prabha</span>
-</footer>
 
 </html>

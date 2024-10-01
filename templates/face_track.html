@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Face and Eye Direction Analysis</title>
+</head>
+<body>
+  <h1>Face and Eye Direction Tracking</h1>
+  <video id="video" autoplay></video>
+  <div id="output"></div>
+  <script>
+    var video = document.getElementById("video");
+    var outputDiv = document.getElementById("output");
+
+    function updateOutput(text) {
+      outputDiv.innerHTML = text;
+    }
+
+    function startVideoFeed() {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+          video.srcObject = stream;
+          video.onloadedmetadata = function() {
+            video.play();
+          };
+        })
+        .catch(error => {
+          console.error("Error accessing webcam:", error);
+        });
+    }
+
+    startVideoFeed();
+  </script>
+</body>
+</html>

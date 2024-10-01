@@ -83,22 +83,31 @@
             background-color: #0056b3;
             color: whitesmoke; /* Darker blue on hover */
         }
-
-        /* Navbar styling */
         .navbar {
-            background-color: #a3d9ff; /* Light blue background */
+            background-color: #ffffff;
+            /* Navbar background color */
         }
 
         .navbar-nav .nav-link {
-            color: #0056b3; /* Darker blue text */
+            color: black;
+            /* Navbar link color */
+        }
+
+        .navbar-nav .nav-link {
+            color: black;
+            /* Navbar link color */
+            transition: background-color 0.3s, box-shadow 0.3s;
+            /* Smooth transition */
         }
 
         .navbar-nav .nav-link:hover {
-            background-color: #007bff; /* Darker blue on hover */
-            color: white; /* White text on hover */
-        }
-
-        /* Footer styling */
+            background-color: #308ef1; /* Darker blue on hover */
+            color: white; 
+            
+            /* Navbar link hover color */
+            box-shadow: 0 0 10px rgb(0, 179, 255), 0 0 20px rgba(255, 255, 255, 0.5);
+            /* Glow effect */
+        }        /* Footer styling */
         footer {
             position: fixed; /* Fix to bottom */
             left: 0; /* Align to left */

@@ -290,25 +290,29 @@ def image_analysis():
             response = model.generate_content(prompt_parts)
             analysis = response.text
     return render_template('image_analysis.html', analysis=analysis)
-
-
 @app.route('/talk_to_me')
+
+
+
 def talk_to_me_page():
     return render_template('talk_to_me.html')
 @app.route('/talk_to_me', methods=['POST'])
 def talk_to_me():
+    
     user_input = request.form['user_input']
 
     try:
+        from talk_to_chikisa import gemini_talk
         # Start the chat session
         chat_session = model.start_chat()
+        bot_response = gemini_talk(user_input)
         
         # Send the user input to the model
-        response = chat_session.send_message(user_input)
-        bot_response = response.text.strip()
+        # response = chat_session.send_message(user_input)
+        # bot_response = response.text.strip()
 
-        # Log the conversation (optional)
-        log_conversation(user_input, bot_response)
+        # # Log the conversation (optional)
+        # log_conversation(user_input, bot_response)
 
         return jsonify({'response': bot_response})
 
@@ -337,5 +341,3 @@ def log_conversation(user_input, bot_response, history_file="dataset/intents.jso
     with open(history_file, 'w') as f:
         json.dump(intents_data, f, indent=4)
 
-if __name__ == "__main__":
-    app.run(debug=True)

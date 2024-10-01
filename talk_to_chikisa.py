@@ -5,11 +5,12 @@ import json
 from speak import speak
 from listen import MicExecution
 from csv_extracter import close_ended_response , open_ended_response
+from trained_chikitsa import chatbot_response
 load_dotenv()
 
 genai.configure(api_key=os.getenv("API_KEY"))
-defaultprompt ="""you have to act as a sexologist , gynologist , neuroloigist also health guide 
-        here avoid emogies else use text 
+
+demoprompt ="""you have to act as a psychiatrist , gynologist , neuroloigist also health guide  
         You are a professional, highly skilled mental doctor, and health guide.
         You act as a best friend to those who talk to you , but you have to talk based on their mental health , by seeing his age intrests qualities , if you dont know ask him indirectly by asking his/her studing or any work doing currently. 
         you can use the knowlege of geeta to make the user's mind more powerfull but you dont have to give reference of krishna or arjuna etc if the user is more towards god ( hindu gods ) then u can else wont
@@ -19,7 +20,8 @@ defaultprompt ="""you have to act as a sexologist , gynologist , neuroloigist al
         You can speak in Hindi, Marathi, Hinglish, or any language the user is comfortable with.
         your name is chikitsa , means Cognitive Health Intelligence Knowledge with Keen Interactive Treatment Support from AI."""
 prompt = "this is my assesment of close ended questions and open ended questions , so you have to talk to me accordingly "
-# Create the model
+
+talkprompt = "You are a psychiatrist , so have to jugdje the patients mentally and physically to , to get to know the physical i will share the face and eyes direction over here so analysise on that basis "
 generation_config = {
   "temperature": 2,
   "top_p": 0.95,
@@ -27,15 +29,19 @@ generation_config = {
   "max_output_tokens": 8192,
   "response_mime_type": "text/plain",
 }
-
+from face_track import generate_video_feed
+outputtext = generate_video_feed()
 model = genai.GenerativeModel(
   model_name="gemini-1.5-pro",
   generation_config=generation_config,
   # safety_settings = Adjust safety settings
   # See https://ai.google.dev/gemini-api/docs/safety-settings
-  system_instruction=defaultprompt+ prompt+ " "+ close_ended_response+" " + open_ended_response)
+  system_instruction=demoprompt+ prompt+ " "+ close_ended_response+" " + open_ended_response +talkprompt+ " "+ outputtext)
 
-def gemini_chat(user_input, history_file="dataset/intents.json"):
+
+
+
+def gemini_talk(user_input, history_file="dataset/intents.json"):
     try:
         # Load the intents JSON or create an empty structure if not found
         if os.path.exists(history_file):
@@ -64,8 +70,12 @@ def gemini_chat(user_input, history_file="dataset/intents.json"):
         return response.text
 
     except Exception as e:
-        print(f"Error during chat: {e}")
-        return "An error occurred. Please try again."
+       
+        response = chatbot_response(user_input)
+        # Optionally log the error to a file
+        with open('error.log', 'a') as log_file:
+            log_file.write(f"{str(e)}\n")
+        return response
 
 if __name__ == "__main__":
     try:
@@ -79,7 +89,7 @@ if __name__ == "__main__":
                 print("Chat ended.")
                 break
 
-            response = gemini_chat(user_input)
+            response = gemini_talk(user_input)
             speak(response)
 
     except Exception as e:

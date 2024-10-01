@@ -10,6 +10,22 @@
         },
         {
             "patterns": [
+                "nothing just bit upset today"
+            ],
+            "responses": [
+                "Ahh, everyone has those days, buddy.  Don't let it get you down! So tell me, what's got your gears grinding today?  Remember, sometimes just talking about it helps. \ud83d\ude0c"
+            ]
+        },
+        {
+            "patterns": [
+                "hello hello"
+            ],
+            "responses": [
+                "Hello! It's really nice to connect with you. \ud83d\ude04 Tell me, what's got you so cheerful today? Anything exciting happening?"
+            ]
+        },
+        {
+            "patterns": [
                 "hello"
             ],
             "responses": [

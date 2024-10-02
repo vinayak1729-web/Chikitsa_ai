@@ -1,5 +1,5 @@
  
-![chikitsa](static/chikitsa.png)
+![chikitsa](static/chikitsa_1.png)
 # C.H.I.K.I.T.S.A  
 Cognitive Health Intelligence Knowledge with Keen Interactive Treatment Support from AI
 
@@ -95,7 +95,7 @@ C.H.I.K.I.T.S.A addresses the challenge of providing AI-enhanced mental health a
   ![Chat](static/chat.png)
 
 - Talk to Me
-  ![Talk to Me](static/talk_to_me.png)
+  ![Talk to Me](static/talk_with_me.png)
 
 - Image Analysis  
   ![Image Analysis](static/image_analysis.png)

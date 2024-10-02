@@ -1,3 +1,4 @@
+ <div align="center">
  
 ![chikitsa](static/chikitsa_1.png)
 # C.H.I.K.I.T.S.A  

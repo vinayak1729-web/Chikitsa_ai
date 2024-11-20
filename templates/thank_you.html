@@ -8,158 +8,286 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <title>Feedback</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+   <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+    <title>CHIKITSA</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #6ab1fd;
-            color: #333;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #7b68ee;
+    --background-gradient-start: #e6f2ff;
+    --background-gradient-end: #f3e7ff;
+    --text-color-dark: #2c3e50;
+    --text-color-light: #ffffff;
+    --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
 
-        header {
-            background-color: #007BFF;
-            padding: 20px;
-            color: white;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        h1 {
-            margin-top: 20px;
-        }
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, var(--background-gradient-start) 0%, var(--background-gradient-end) 100%);
+    color: var(--text-color-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
-        p {
-            font-size: 18px;
-            padding: 15px;
-            background-color: #e9ecef;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin: 20px auto;
-            max-width: 600px;
-        }
+header {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    color: var(--text-color-light);
+    padding: 2rem;
+    text-align: center;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
 
-        button {
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
+h1 {
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
 
-        button:hover {
-            background-color: #0056b3;
-        }
+.feature-slider {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
 
-        .navbar {
-            background-color: #ffffff;
-        }
+.feature-card {
+    background: var(--text-color-light);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px;
+}
 
-        .navbar-nav .nav-link {
-            color: black;
-        }
+.feature-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
 
-        .navbar-nav .nav-link:hover {
-            background-color: #308ef1;
-            color: white;
-            box-shadow: 0 0 10px rgb(0, 179, 255), 0 0 20px rgba(255, 255, 255, 0.5);
-        }
+.feature-card h5 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
 
-        footer {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            background-color: #ffffff;
-            padding: 10px;
-            width: 100%;
-            text-align: left;
-            font-size: 14px;
-            border-top: 1px solid #ccc;
-        }
+.feature-card p {
+    color: var(--text-color-dark);
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        footer img {
-            height: 20px;
-            margin-right: 5px;
-            vertical-align: middle;
-        }
+button {
+    background: var(--primary-color);
+    color: var(--text-color-light);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    margin-top: auto;
+}
 
-        .thumbs {
-            margin: 20px;
-        }
+button:hover {
+    background: var(--secondary-color);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
+}
 
-        .thumbs button {
-            font-size: 24px;
-            padding: 10px;
-            margin: 0 10px;
-        }
+footer {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    text-align: center;
+    margin-top: auto;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
 
-        #proceedBtn, #regenerateBtn {
-            display: none;
-            margin-top: 20px;
-            align-items: center;
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .feedbtn{
-            text-align: center;
-            align-items: center;
-        }
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+    opacity: 0.7;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .feature-card {
+        height: auto;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+}
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+footer img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+    border: 2px solid var(--primary-color);
+}
+
+footer span {
+    font-size: 0.9rem;
+    color: var(--text-color-dark);
+    display: flex;
+    align-items: center;
+}
+.sbtn{
+    width: 150px;
+    height: auto;
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
     </style>
 
     <script>
-        function handleFeedback(isPositive) {
-            if (isPositive) {
-                document.getElementById('proceedBtn').style.display = 'block';
-                document.getElementById('regenerateBtn').style.display = 'none';
-            } else {
-                document.getElementById('proceedBtn').style.display = 'none';
-                document.getElementById('regenerateBtn').style.display = 'block';
-            }
+        function showComplete() {
+            document.getElementById("judgeGemini").innerHTML = "Your feedback is complete!";
+            setTimeout(function () {
+                window.location.reload();
+            }, 100);
         }
     </script>
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="static/chikitsa.png" alt="CHIKITSA Logo" style="height: 55px; width: auto;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('chat') }}">💬 Chat with me?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('talk_to_me') }}">🎙️ Talk to me?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('image_analysis') }}">🖼️ Image analysis</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    {% if user_name and user_name.is_authenticated %}
+                        <span class="navbar-text me-3">👋 Welcome, {{ user_name }}!</span>
+                        <a href="{{ url_for('logout') }}" class="btn btn-outline-danger">Logout</a>
+                    {% else %}
+                        <a class="nav-link" href="{{ url_for('login') }}">🔑 Login</a>
+                    {% endif %}
+                </div>
+                
+            </div>
+        </div>
+    </nav>
     <header>
-        <h1>Feedback</h1>
+        <h1>Hi {{ user_name }}! 👋</h1>
     </header>
 
     <!-- Display feedback from Gemini -->
-    <p>{{ judge_gemini }}</p>
+    <p id="judgeGemini" style="font-size: 14px;">{{ judge_gemini }}</p>
+    <button class="sbtn" onclick="showComplete()">Show complete</button>
+<br><br><br>
+    <!-- Welcome Message -->
+    <h1>Welcome to <strong>Chikitsa! 🌿</strong> Your digital psychiatry assistant, helping you manage mental health through guided assessments and personalized support. 🌱💙</h1>
 
-    <!-- Thumbs Up/Down Buttons -->
-    <div class="thumbs">
-        <button type="button" class="btn btn-success" onclick="handleFeedback(true)">
-            <i class="fas fa-thumbs-up"></i> 👍
-        </button>
-        
-        <button type="button" class="btn btn-danger" onclick="handleFeedback(false)">
-            <i class="fas fa-thumbs-down"></i> 👎
-        </button>
+    <!-- Feature Section (Slider with Cards) -->
+    <div class="feature-slider">
+        <div id="featureCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <!-- Feature Card 1 -->
+                <div class="carousel-item active">
+                    <div class="feature-card">
+                        <h5>Chatbot 🗣️</h5>
+                        <p>Our Chatbot offers empathetic AI support, helping you talk through your thoughts and feelings.</p>
+                        <button type="button" onclick="window.location.href='/chat'">🗣️ Chatbot</button>
+                    </div>
+                </div>
+                <!-- Feature Card 2 -->
+                <div class="carousel-item">
+                    <div class="feature-card">
+                        <h5>Voice Assistant 🎙️</h5>
+                        <p>The Voice Assistant engages in meaningful conversations, offering personalized support.</p>
+                        <button type="button" onclick="window.location.href='/talk_to_me'">🎙️ Voice Assistant</button>
+                    </div>
+                </div>
+                <!-- Feature Card 3 -->
+                <div class="carousel-item">
+                    <div class="feature-card">
+                        <h5>Image Analyzer 🖼️</h5>
+                        <p>Analyze photos to understand potential injuries and receive peace of mind.</p>
+                        <button type="button" onclick="window.location.href='/image_analyser'">🖼️ Image Analyser</button>
+                    </div>
+                </div>
+                <!-- Feature Card 4 -->
+                <div class="carousel-item">
+                    <div class="feature-card">
+                        <h5>Stress Relief Exercises 🧘‍♂️</h5>
+                        <p>Guided relaxation exercises to reduce stress and improve well-being. (In progress)</p>
+                    </div>
+                </div>
+            </div>
+
+            <a class="carousel-control-prev" href="#featureCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#featureCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
     </div>
-
-    <!-- Proceed button (visible when thumbs-up is clicked) -->
-     <div class="feedbtn">
-            <form action="/chat" method="get">
-        <button id="proceedBtn" type="submit" class="btn btn-primary">Let's Proceed</button>
-    </form>
-
-    <!-- Regenerate button (visible when thumbs-down is clicked) -->
-    <form action="{{ url_for('thank_you') }}" method="get">
-        <button id="regenerateBtn" type="submit"  class="btn btn-warning">Regenerate Feedback</button>
-    </form>
-</div>
-
-    <br><br>
-
+<br><br><br>
     <footer>
         <img src="{{ url_for('static', filename='suryaprabha.jpeg') }}" alt="Logo">
         <span>Made with Gemini, by Team Surya Prabha</span>

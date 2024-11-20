@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, redirect, url_for, session
+from flask import Flask, render_template, request, jsonify, redirect, url_for, session,Response
 import json
 import os
 import bcrypt
@@ -18,6 +18,7 @@ from gemini_ai import gemini_chat
 from image_analysis import analyze_image
 from werkzeug.utils import secure_filename
 from trained_chikitsa import chatbot_response
+import cv2
 # Load environment variables
 load_dotenv()
 
@@ -155,16 +156,35 @@ def save_responses_to_csv(responses):
     # Save to CSV
     df.to_csv('responses/open_end_questions_responses.csv', mode='w', header=not file_exists, index=False)
 
+# @app.route('/thank_you')
+# def thank_you():
+    
+#     close_ended_str = csv_to_string("responses/close_end_questions_responses.csv")
+#     open_ended_str = csv_to_string("responses/open_end_questions_responses.csv")
+#     default=" this is my assesment of close ended questions and open ended questions , give feed back on me "
+#     judge_gemini = gemini_chat(default+" "+close_ended_str+" "+open_ended_str)
+#     summarize = gemini_chat("summarize this in 200 words "+judge_gemini)
+#     return render_template('thank_you.html', judge_gemini=summarize)
 @app.route('/thank_you')
 def thank_you():
-    
+    # Get the email from the session
+    email = session.get('email')
+
+    if email:
+        # Retrieve user data from the database using the email
+        user = User.query.filter_by(email=email).first()
+        user_name = user.name if user else "User"  # Default to "User" if not found
+    else:
+        user_name = "Guest"  # Default to "Guest" if email is not in the session
+
+    # Generate the Gemini feedback
     close_ended_str = csv_to_string("responses/close_end_questions_responses.csv")
     open_ended_str = csv_to_string("responses/open_end_questions_responses.csv")
-    default=" this is my assesment of close ended questions and open ended questions , give feed back on me "
-    judge_gemini = gemini_chat(default+" "+close_ended_str+" "+open_ended_str)
-    #default_txt = "tell me how i am i what kind of man ? , and write in I am ___ for not in you are a __  , you can get to know by a assesment test : " 
-    #tell_me_about_me = gemini_chat(default_txt+""+close_ended_str+" "+open_ended_str)
-    return render_template('thank_you.html', judge_gemini=judge_gemini)
+    default = "This is my assessment of close-ended questions and open-ended questions. Please provide feedback on me."
+    judge_gemini = gemini_chat(default + " " + close_ended_str + " " + open_ended_str)
+    mainprompt="Please summarize the following content in 200 words. Analyze my strengths and weaknesses, identify areas for improvement, and provide actionable suggestions on how to improve. Also, give an honest assessment of my mental health and well-being based on the content provided. Keep in mind that you are my digital psychiatrist, my best friend, and a well-rounded expert in various fields of knowledge. Your feedback should be constructive, empathetic, and based on your understanding of the information provided. Help me grow by offering insights on how I can become a better version of myself, both personally and professionally. at last summarize in only 200 words or less then it add some emogies for representing more connection "
+    summarize = gemini_chat(mainprompt+judge_gemini)
+    return render_template('thank_you.html', judge_gemini=summarize, user_name=user_name ,completejudege=judge_gemini)
 
 
 
@@ -290,35 +310,86 @@ def image_analysis():
             response = model.generate_content(prompt_parts)
             analysis = response.text
     return render_template('image_analysis.html', analysis=analysis)
-@app.route('/talk_to_me')
+
+from fer import FER
+# # Initialize emotion detection model
+emotion_detector = FER(mtcnn=True)
 
 
+# Initialize global variables
+attention_status = "Not Paying Attention"
+dominant_emotion = "neutral"  # Default value
 
-def talk_to_me_page():
-    return render_template('talk_to_me.html')
-@app.route('/talk_to_me', methods=['POST'])
+def is_paying_attention(emotions_dict, threshold=0.5):
+    """ Checks if the user is paying attention based on emotion scores. """
+    dominant_emotion = max(emotions_dict, key=emotions_dict.get)
+    emotion_score = emotions_dict[dominant_emotion]
+    return emotion_score > threshold, dominant_emotion
+
+def detect_emotion_and_attention(frame):
+    """ Detects emotion and attention from the frame. """
+    global attention_status, dominant_emotion
+
+    results = emotion_detector.detect_emotions(frame)
+
+    for result in results:
+        bounding_box = result["box"]
+        emotions_dict = result["emotions"]
+
+        # Update attention status and dominant emotion
+        paying_attention, dominant_emotion = is_paying_attention(emotions_dict)
+        attention_status = "Paying Attention" if paying_attention else "Not Paying Attention"
+
+        # Draw bounding box and display emotion info
+        x, y, w, h = bounding_box
+        cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+        emotion_text = ", ".join([f"{emotion}: {prob:.2f}" for emotion, prob in emotions_dict.items()])
+        cv2.putText(frame, f"{dominant_emotion} ({attention_status})", (x, y - 10),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+        cv2.putText(frame, emotion_text, (x, y + h + 20), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
+
+    return frame
+
+# Video feed generator
+def generate_frames():
+    """ Captures frames from the webcam and detects emotion and attention. """
+    cap = cv2.VideoCapture(0)
+    while True:
+        success, frame = cap.read()
+        if not success:
+            break
+
+        frame = detect_emotion_and_attention(frame)
+        _, buffer = cv2.imencode('.jpg', frame)
+        frame = buffer.tobytes()
+
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+    cap.release()
+
+# Flask route for the chatbot interaction
+@app.route('/talk_to_me', methods=['GET', 'POST'])
 def talk_to_me():
-    
-    user_input = request.form['user_input']
+    """ Handles the user's input and sends it to the chatbot along with emotion and attention. """
+    global attention_status, dominant_emotion
 
-    try:
-        from talk_to_chikisa import gemini_talk
-        # Start the chat session
-        chat_session = model.start_chat()
-        bot_response = gemini_talk(user_input)
-        
-        # Send the user input to the model
-        # response = chat_session.send_message(user_input)
-        # bot_response = response.text.strip()
+    if request.method == 'GET':
+        return render_template('talk_to_me.html')
 
-        # # Log the conversation (optional)
-        # log_conversation(user_input, bot_response)
+    elif request.method == 'POST':
+        user_input = request.form.get('user_input', '')
+
+        # Create the prompt with the attention status and emotion
+        prompt = f"The user is in a {dominant_emotion} mood and is {'paying attention' if attention_status == 'Paying Attention' else 'not paying attention'}."
+
+        # Call the gemini_chat function with the user input and the generated prompt
+        bot_response = gemini_chat(user_input + " " + prompt)
 
         return jsonify({'response': bot_response})
 
-    except Exception as e:
-        print(f"Error during chat: {e}")
-        return jsonify({'response': 'An error occurred. Please try again.'})
+    else:
+        return "Unsupported request method", 405
 
 def log_conversation(user_input, bot_response, history_file="dataset/intents.json"):
     # Load or initialize intents data
@@ -341,6 +412,9 @@ def log_conversation(user_input, bot_response, history_file="dataset/intents.jso
     with open(history_file, 'w') as f:
         json.dump(intents_data, f, indent=4)
 
+@app.route('/video_feed')
+def video_feed():
+    return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 if __name__ == "__main__":
     app.run(debug=True)
     

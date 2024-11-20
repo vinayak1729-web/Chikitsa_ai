@@ -1,145 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assessment Test</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+    <title>Close-ended Questionnaire</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #84e0ff 0%, #f59eff 100%);
+        color: #333;
+        margin: 0;
+        padding: 20px;
+        min-height: 100vh;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding: 20px;
+    }
+
+    h1 {
+        color: white;
+        margin-bottom: 10px;
+        font-size: 2.5em;
+        font-weight: 600;
+    }
+
+    .subtitle {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.1em;
+        margin-bottom: 20px;
+    }
+
+    .progress-container {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto 20px;
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 20px;
+        background-color: #edf2f7;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .progress {
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, #4481eb 0%, #04befe 100%);
+        transition: width 0.4s ease-in-out;
+    }
+
+    .progress-text {
+        text-align: center;
+        margin-top: 8px;
+        font-size: 14px;
+        color: #4a5568;
+    }
+
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 25px;
+    }
+
+    .question-container {
+        margin-bottom: 25px;
+        padding: 15px;
+        border-bottom: 1px solid #edf2f7;
+        transition: all 0.3s ease;
+    }
+
+    .question-label {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 12px;
+        color: #0c071a;
+    }
+
+    .radio-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    .radio-option {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 6px;
+        transition: background-color 0.2s;
+    }
+
+    .radio-option:hover {
+        background-color: #f0f4f8;
+    }
+
+    .radio-option input[type="radio"] {
+        margin-right: 8px;
+        cursor: pointer;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(90deg, #4481eb 0%, #04befe 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 10px rgba(68, 129, 235, 0.2);
+    }
+
+    button:hover {
+        background: linear-gradient(90deg, #04befe 0%, #4481eb 100%);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 15px rgba(68, 129, 235, 0.3);
+    }
+
+    footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+footer img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+    border: 2px solid var(--primary-color);
+}
+
+footer span {
+    font-size: 0.9rem;
+    color: var(--text-color-dark);
+    display: flex;
+    align-items: center;
+}
+
+    @media (max-width: 768px) {
         body {
-            font-family: 'Poppins', sans-serif;
-            /* Use Poppins font */
-            background-color: #6ab1fd;
-            /* Light background color */
-            color: #333;
-            /* Text color */
-            margin: 0;
-            /* Remove default margin */
-            padding: 20px;
-            /* Add padding */
+            padding: 15px;
         }
 
-        h1 {
-            text-align: center;
-            /* Center the heading */
-            margin-bottom: 30px;
-            /* Space below heading */
-            color: #007bff;
-            /* Heading color */
-        }
-
+        .progress-container,
         form {
-            max-width: 600px;
-            /* Max width of the form */
-            margin: 0 auto;
-            /* Center the form */
-            padding: 20px;
-            /* Add padding to the form */
-            background-color: #ffffff;
-            /* White background for the form */
-            border-radius: 8px;
-            /* Rounded corners */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            /* Subtle shadow */
+            padding: 15px;
         }
 
-        div {
-            margin-bottom: 15px;
-            /* Space between questions */
+        .radio-group {
+            flex-direction: column;
+            gap: 10px;
         }
 
-        label {
-            font-weight: bold;
-            /* Bold labels */
-            display: block;
-            /* Block display for labels */
-            margin-bottom: 5px;
-            /* Space below labels */
+        .radio-option {
+            width: 100%;
         }
 
-        input[type="radio"] {
-            margin-right: 10px;
-            /* Space between radio and label */
+        button {
+            padding: 12px;
         }
 
         footer {
-            position: fixed;
-            /* Fix to bottom */
-            left: 0;
-            /* Align to left */
-            bottom: 0;
-            /* Align to bottom */
-            background-color: #ffffff;
-            /* Light blue background */
-            padding: 10px;
-            /* Padding */
-            width: 100%;
-            /* Full width */
-            text-align: left;
-            /* Left align text */
-            font-size: 14px;
-            /* Smaller font size */
-            border-top: 1px solid #ccc;
-            /* Top border */
+            padding: 10px 15px;
         }
-
-        footer img {
-            height: 20px;
-            /* Height of logo */
-            margin-right: 5px;
-            /* Space to the right of logo */
-            vertical-align: middle;
-            /* Center align */
-        }
-
-
-        button {
-            display: block;
-            /* Block display for button */
-            width: 100%;
-            /* Full width button */
-            padding: 10px;
-            /* Padding inside button */
-            background-color: #007bff;
-            /* Button background color */
-            color: white;
-            /* Button text color */
-            border: none;
-            /* Remove border */
-            border-radius: 5px;
-            /* Rounded corners for button */
-            cursor: pointer;
-            /* Pointer cursor on hover */
-            font-size: 16px;
-            /* Font size for button */
-        }
-
-        button:hover {
-            background-color: #0056b3;
-            /* Darker blue on hover */
-        }
-    </style>
-</head>
-
+    }
+</style>
 <body>
-    <h1 style="color: whitesmoke;">Assessment Test</h1>
-    <form action="{{ url_for('submit_close_ended') }}" method="POST">
-        {% for question in questions %}
-        <div>
-            <label>{{ question }}</label><br>
-            <input type="radio" name="{{ question }}" value="Yes" required> Yes
-            <input type="radio" name="{{ question }}" value="No" required> No
-        </div>
-        <br>
-        {% endfor %}
-        <button type="submit">Submit</button>
-    </form>
-</body>
-<footer>
-    <img src="{{ url_for('static', filename='suryaprabha.jpeg') }}" alt="Logo"> <!-- Path to your logo -->
-    <span>Made with Gemini, by Team Surya Prabha</span>
-</footer>
+    <div class="header">
+        <h1>📝 Close-ended Questionnaire</h1>
+        <p class="subtitle">✨ Please answer all questions honestly. Your responses will help us understand how to better support you. 💙</p>
+    </div>
 
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        <div class="progress-text" style="color: white;">
+            Progress: <span id="progress-percentage">0</span>% Complete 🌟
+        </div>
+    </div>
+
+    <form class="assessment-form" action="{{ url_for('submit_close_ended') }}" method="POST">
+        {% for question in questions %}
+        <div class="question-container">
+            <label class="question-label">❓ {{ question }}</label>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="{{ question }}" value="Yes" required onchange="updateProgress()">
+                    <span>✅ Yes</span>
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="{{ question }}" value="No" required onchange="updateProgress()">
+                    <span>❌ No</span>
+                </label>
+            </div>
+        </div>
+        {% endfor %}
+        <button type="submit">➡️ Proceed to Next</button>
+        <br><br>
+    </form>
+
+    <footer>
+        <img src="{{ url_for('static', filename='suryaprabha.jpeg') }}" alt="Logo">
+        <span>🌍 Made with ❤️ by Team Surya Prabha ☀️</span>
+    </footer>
+
+    <script>
+        function updateProgress() {
+            const totalQuestions = document.querySelectorAll('.question-container').length;
+            const answeredQuestions = document.querySelectorAll('input[type="radio"]:checked').length;
+            const progressPercentage = (answeredQuestions / totalQuestions) * 100;
+            
+            document.getElementById('progress').style.width = progressPercentage + '%';
+            document.getElementById('progress-percentage').textContent = Math.round(progressPercentage);
+        }
+    </script>
+</body>
 </html>

@@ -7,144 +7,253 @@
     <title>Assessment Test</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
         body {
             font-family: 'Poppins', sans-serif;
-            /* Use Poppins font */
-            background-color: #6ab1fd;
-            /* Light background color */
+            background: linear-gradient(135deg, #84e0ff 0%, #f7b0ff 100%);
             color: #333;
-            /* Text color */
             margin: 0;
-            /* Remove default margin */
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
             padding: 20px;
-            /* Add padding */
         }
 
         h1 {
+            color: white;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .progress-container {
+            width: 90%;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background-color: #edf2f7;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #4481eb 0%, #04befe 100%);
+            transition: width 0.4s ease-in-out;
+        }
+
+        .progress-text {
             text-align: center;
-            /* Center the heading */
-            margin-bottom: 30px;
-            /* Space below heading */
-            color: #007bff;
-            /* Heading color */
+            margin-top: 8px;
+            font-size: 14px;
+            color: #4a5568;
         }
 
         form {
+            width: 90%;
             max-width: 600px;
-            /* Max width of the form */
             margin: 0 auto;
-            /* Center the form */
-            padding: 20px;
-            /* Add padding to the form */
-            background-color: #ffffff;
-            /* White background for the form */
-            border-radius: 8px;
-            /* Rounded corners */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            /* Subtle shadow */
+            padding: 30px;
+            
+            border-radius: 12px;
+            
         }
 
-        div {
-            margin-bottom: 15px;
-            /* Space between questions */
+       
+
+        .question-container {
+            margin-bottom: 20px;
         }
 
-        label {
-            font-weight: bold;
-            /* Bold labels */
+        .question-label {
+            font-weight: 600;
             display: block;
-            /* Block display for labels */
-            margin-bottom: 5px;
-            /* Space below labels */
+            margin-bottom: 8px;
+            color: #033c41;
+            font-size: 1.1em;
         }
 
         input[type="text"] {
-            width: 100%;
-            /* Full width input */
+            width: 90%;
             padding: 10px;
-            /* Padding inside input */
-            border: 1px solid #ccc;
-            /* Border for input */
-            border-radius: 5px;
-            /* Rounded corners for input */
-            font-size: 16px;
-            /* Font size for input */
+            border: 2px solid #00eeff;
+            border-radius: 8px;
+            border-color: #033c41;
+            font-size: 1.1em;
+            color: #ffffff;
+            background-color: rgba(96, 25, 134, 0.553);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
+
+        input[type="text"]:focus {
+            border-color: #4481eb;
+            box-shadow: 0 0 8px rgba(68, 129, 235, 0.3);
+            outline: none;
+        }
+        input[type="text"]::placeholder {
+    color: white;
+}
+
 
         button {
             display: block;
-            /* Block display for button */
             width: 100%;
-            /* Full width button */
-            padding: 10px;
-            /* Padding inside button */
-            background-color: #007bff;
-            /* Button background color */
+            padding: 12px;
+            background: linear-gradient(90deg, #4481eb 0%, #04befe 100%);
             color: white;
-            /* Button text color */
             border: none;
-            /* Remove border */
-            border-radius: 5px;
-            /* Rounded corners for button */
+            border-radius: 8px;
             cursor: pointer;
-            /* Pointer cursor on hover */
             font-size: 16px;
-            /* Font size for button */
-        }
-
-        footer {
-            position: fixed;
-            /* Fix to bottom */
-            left: 0;
-            /* Align to left */
-            bottom: 0;
-            /* Align to bottom */
-            background-color: #ffffff;
-            /* Light blue background */
-            padding: 10px;
-            /* Padding */
-            width: 100%;
-            /* Full width */
-            text-align: left;
-            /* Left align text */
-            font-size: 14px;
-            /* Smaller font size */
-            border-top: 1px solid #ccc;
-            /* Top border */
-        }
-
-        footer img {
-            height: 20px;
-            /* Height of logo */
-            margin-right: 5px;
-            /* Space to the right of logo */
-            vertical-align: middle;
-            /* Center align */
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(68, 129, 235, 0.2);
         }
 
         button:hover {
-            background-color: #0056b3;
-            /* Darker blue on hover */
+            background: linear-gradient(90deg, #04befe 0%, #4481eb 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(68, 129, 235, 0.3);
+        }
+
+        footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+footer img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+    border: 2px solid var(--primary-color);
+}
+
+footer span {
+    font-size: 0.9rem;
+    color: var(--text-color-dark);
+    display: flex;
+    align-items: center;
+}
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .header {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            form {
+                padding: 15px;
+            }
+
+            .progress-container {
+                padding: 10px;
+            }
+
+            button {
+                padding: 12px;
+            }
+
+            footer {
+                padding: 10px 15px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <h1 style="color: whitesmoke;">Assessment Test</h1>
-    <form action="{{ url_for('submit_opended') }}" method="POST"> <!-- Corrected action here -->
-        {% for question in questions %}
-        <div>
-            <label>{{ question }}</label><br>
-            <input type="text" name="{{ question }}" placeholder="Enter in complete sentence" required>
+    <div class="header">
+        <h1 style="font-size: 40px;">📝 Open-ended Questionnaire</h1>
+        <p class="subtitle">✨ Please answer all questions honestly. Your responses will help us understand how to better support you. 💙.</p>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
         </div>
-        <br>
+        <div class="progress-text">
+            Progress: <span id="progress-percentage">0%</span> Complete 🌟
+        </div>
+    </div>
+
+    <form action="{{ url_for('submit_opended') }}" method="POST">
+        {% for question in questions %}
+        <div class="question-container">
+            <label class="question-label" style="font-size: medium;"> 👀{{ question }}</label><br>
+            <input type="text" name="{{ question }}" placeholder="Enter in complete sentence" style="color: white;" required>
+        </div>
         {% endfor %}
-        <button type="submit">Submit</button>
+        <p >Submit The Questionnaire Correct And Get to know About You 👀 🙈!!</p>
+        <button type="submit">➡️ Submit To Know About You 👀🙈</button>
     </form>
+    <br><br>
+
+    <footer>
+        <img src="{{ url_for('static', filename='suryaprabha.jpeg') }}" alt="Logo">
+        <span>Made with Gemini, by Team Surya Prabha</span>
+    </footer>
+
+    <script>
+        const questions = document.querySelectorAll('input[type="text"]');
+        const progressBar = document.getElementById('progress');
+        const progressPercentage = document.getElementById('progress-percentage');
+
+        // Initialize progress bar at 0%
+        progressBar.style.width = '0%';
+        progressPercentage.textContent = '0%';
+
+        // Update progress bar based on user inputs
+        questions.forEach((question, index) => {
+            question.addEventListener('input', () => {
+                let filledCount = 0;
+                questions.forEach(input => {
+                    if (input.value.trim() !== '') {
+                        filledCount++;
+                    }
+                });
+
+                const progress = Math.floor((filledCount / questions.length) * 100);
+                progressBar.style.width = `${progress}%`;
+                progressPercentage.textContent = `${progress}%`;
+            });
+        });
+    </script>
+
 </body>
-<footer>
-    <img src="{{ url_for('static', filename='suryaprabha.jpeg') }}" alt="Logo"> <!-- Path to your logo -->
-    <span>Made with Gemini, by Team Surya Prabha</span>
-</footer>
 
 </html>

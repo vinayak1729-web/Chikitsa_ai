@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Assistant</title>
+    <style>
+        /* Styling for video and messages */
+        #video-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: auto;
+        }
+        #video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        #chatbox {
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .user-msg {
+            text-align: right;
+            color: blue;
+            margin: 5px 0;
+        }
+        .bot-msg {
+            text-align: left;
+            color: green;
+            margin: 5px 0;
+        }
+        #controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        #mic-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="video-container">
+        <img id="video" src="/video_feed" alt="Video Stream">
+    </div>
+    <div id="chatbox"></div>
+    <div id="controls">
+        <button id="mic-btn">🎤</button>
+    </div>
+
+    <script>
+        // Video Stream
+        const video = document.getElementById('video');
+        video.src = "/video_feed";
+
+        // Chat Functionality
+        document.getElementById('mic-btn').onclick = function () {
+            startListening();
+        };
+
+        function sendMessage(userInput) {
+            if (userInput.trim() === "") return;
+            document.getElementById('chatbox').innerHTML += `<div class="user-msg">${userInput}</div>`;
+
+            fetch('/talk_to_me', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `user_input=${encodeURIComponent(userInput)}`
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('chatbox').innerHTML += `<div class="bot-msg">${data.response}</div>`;
+                    speak(data.response); // Speak the bot's response
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function startListening() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            recognition.start();
+
+            recognition.onresult = function (event) {
+                const userInput = event.results[0][0].transcript;
+                sendMessage(userInput); // Send the recognized input
+            };
+
+            recognition.onerror = function (event) {
+                console.error('Speech recognition error:', event.error);
+            };
+
+            recognition.onend = function () {
+                console.log('Speech recognition stopped.');
+            };
+        }
+
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>

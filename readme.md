@@ -1,117 +1,187 @@
- <div align="center">
+
+<div align="center">
 
 ![chikitsa](static/chikitsa_1.png)
 </div>
+
 # C.H.I.K.I.T.S.A  
-Cognitive Health Intelligence Knowledge with Keen Interactive Treatment Support from AI
-
-## Overview
-C.H.I.K.I.T.S.A is an AI-powered mental health chatbot designed to assist individuals in their mental health journey. It leverages cutting-edge technologies like natural language processing, medical image analysis, and voice interaction to provide personalized mental health assessments and emotional support. While it offers various support functionalities, it does not replace professional medical diagnoses and treatments.  
-
-## n-Scope
-1. Mental Health Assessment: Provides personalized assessments and recommendations based on user interaction.
-2. Image Analysis: Analyzes medical images to detect potential conditions.
-3. Voice Interaction: Allows users to interact with the system through voice commands.
-4. Gemini API Integration: Powered by the Gemini API for enhanced natural language processing.
-5. Data Security: Ensures user data is securely stored.
-6. User Interface: Intuitive and user-friendly interface for seamless navigation.
-
-## Architechture 
--  Login 
-  ![Architechture](static/architechture.png)
-
-## Out-of-Scope
-- Medical Diagnoses: Does not provide professional medical diagnoses or prescriptions.
-- Complex Medical Conditions: May not be suitable for individuals with complex medical histories.
-- Sensitive Information:Not designed for handling extremely sensitive or confidential information.
-
-## Future Opportunities
-- Reinforcement Learning: The system can improve through continuous learning from user interactions.
-- Webcam Integration: Facial expressions could be analyzed in real-time via webcam integration.
-- Healthcare Partnerships:Collaborating with healthcare providers could enhance care coordination.
-- Language Expansion:Expanding language capabilities for a global audience.
-- Specialized Modules: Development of tailored modules for specific mental health conditions.
-
-## Challenges and Solutions
-1. Suitable Questioning for Evaluation Creation:  
-   Problem: General mental health assessment.  
-   Solution: Collaborated with experts and researched existing models to create effective assessments.
-
-2. Multilingual Conversation: 
-   Problem: Handling multiple languages in voice-based interaction.  
-   Solution: Leveraged Gemini’s multilingual capabilities, using varied data for speech-to-text and text-to-speech.
-
-3. OpenCV for Face Detection: 
-   Problem: Reliable face detection and analysis.  
-   Solution:Optimized OpenCV parameters and iterated over several models to improve accuracy.
-
-4. Learning and Applying Gemini API:  
-   Problem: Correct implementation of the Gemini API.  
-   Solution: Studied documentation and engaged in troubleshooting to achieve a seamless integration.
-
-5. Chatbot Development and Bug Fixing:
-   Problem: Debugging and refining the chatbot's logic.  
-   Solution: Followed a systematic approach with task segmentation and thorough testing.
-
-6. Voice Assistant Integration: 
-   Problem: Integrating a voice assistant for natural language interaction.  
-   Solution:Invested in platforms, fine-tuning parameters to ensure smooth interaction.
-
-7. Medical Image Analysis: 
-   Problem: Accuracy in analyzing medical images.  
-   Solution: Collaborated with medical experts for accuracy, implemented quality controls, and improved feed accuracy.
-
-
-
-C.H.I.K.I.T.S.A addresses the challenge of providing AI-enhanced mental health and emotional support through personalized assessments, medical image analysis, and natural interaction features powered by the Gemini API.
-
-## Installation
-1. Clone the repository:  
-   ```bash
-   git clone https://github.com/vinayak1729-web/chikitsa_main_ai
-   ```
-2. Install dependencies:  
-   ```bash
-   pip install -r requirement.txt
-   ```
-3. Run the application:  
-   ```bash
-   python app.py
-   ```
-
-## Screenshots
-
--  Login 
-  ![Login](static/login.png)
-
-- Open-Ended Question
-  ![Open-Ended](static/open_ended.png)
-
-- Close-Ended Question
-  ![Close-Ended](static/close_ended.png)
-
-- Feedback 
-  ![Feedback](static/feedback.png)
-
--  Chat 
-  ![Chat](static/chat.png)
-
-- Talk to Me
-  ![Talk to Me](static/talk_with_me.png)
-
-- Image Analysis  
-  ![Image Analysis](static/image_analysis.png)
-
-## Contributing
-1. Fork the repository.
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4. Push to the branch (`git push origin feature/AmazingFeature`).
-5. Open a Pull Request.
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+**Cognitive Health Intelligence Knowledge with Keen Interactive Treatment Support from AI**
 
 ---
 
-Let me know if you'd like any changes!
+## Overview  
+C.H.I.K.I.T.S.A is an advanced AI-powered mental health assistant designed to help individuals on their journey to better mental well-being. It integrates state-of-the-art technologies like emotion detection, real-time facial analysis, medical image analysis, and voice interaction. It provides personalized recommendations, mental health assessments, and emotional support while ensuring a user-friendly interface and robust data security.  
+
+⚠️ **Disclaimer:** C.H.I.K.I.T.S.A does not replace professional medical advice, diagnoses, or treatment.
+
+---
+
+## Features  
+### Core Functionalities:  
+1. **Mental Health Assessment:**  
+   Personalized assessments and recommendations based on user inputs and interactions.  
+   
+2. **Emotion and Attention Detection:**  
+   Uses webcam-based facial emotion analysis to detect emotional states and attention levels in real-time.  
+
+3. **Voice Assistant Integration:**  
+   A natural and engaging voice assistant to communicate with users effectively.
+
+4. **Medical Image Analysis:**  
+   A feature for analyzing medical images to detect potential conditions and reduce user stress.
+
+5. **Feedback Mechanism:**  
+   Displays user-specific feedback with/without login. Login-based feedback now includes user names for personalization.
+
+6. **Open-Ended and Close-Ended Questions:**  
+   Tailored questionnaires to understand user needs and mental states.  
+
+7. **Enhanced User Experience:**  
+   Updated CSS themes and new instructions on the home page (home.png) for better usability.  
+
+---
+
+### Future Roadmap:  
+1. **Recommendation System:**  
+   Recommend activities like breathing exercises or meditations based on user feedback and emotional states.  
+
+2. **Stress Relief Modules:**  
+   Add guided stress-relief exercises like breathing techniques and meditation.  
+
+3. **Expanded Question Bank:**  
+   Include more detailed mental health evaluation questions for better insights.  
+
+4. **Advanced Recommendations:**  
+   Tailor recommendations based on the user's detected emotions or mental health assessment.  
+
+---
+
+## Updated Architecture  
+### Flow Diagram:  
+![Architecture](static/flowchart.png)  
+
+---
+
+## Installation  
+### Steps to Set Up the Project:  
+1. **Clone the Repository:**  
+   ```bash
+   git clone https://github.com/vinayak1729-web/chikitsa_main_ai
+   ```  
+
+2. **Install Dependencies:**  
+   ```bash
+   pip install -r requirement.txt
+   ```  
+
+3. **Run the Application:**  
+   ```bash
+   python app.py
+   ```  
+
+---
+
+## How to Use  
+1. **Login:**  
+   Log in to personalize your experience.  
+
+2. **Access Features:**  
+   - For mental health assessments, select from open-ended or close-ended questionnaires.  
+   - To interact, use the chatbot or voice assistant.  
+   - Webcam integration allows for real-time emotion and attention detection.  
+
+3. **Get Feedback:**  
+   After assessments, view feedback with personalized recommendations. Logged-in users will see their names in the feedback section.  
+
+4. **Image Analysis:**  
+   Upload medical images for stress-reducing insights.
+
+5. **Explore Stress Relief:**  
+   (Coming Soon) Access guided exercises for stress relief and relaxation.
+
+---
+
+## Screenshots  
+
+### Updated Screens  
+- **Home with Instructions**  
+  ![Home](static/home_page.png)  
+
+- **Login Page**  
+  ![Login](static/login.png)  
+
+- **Open-Ended Questions**  
+  ![Open-Ended](static/open_ended.png)  
+
+- **Close-Ended Questions**  
+  ![Close-Ended](static/close_ended.png)  
+
+- **Feedback (Logged-In)**  
+  ![Feedback (Logged-In)](static/feedback1.png)  
+
+- **Feedback (Without Login)**  
+  ![Feedback (Without Login)](static/feedback.png)  
+
+- **Voice Assistant**  
+  ![Voice Assistant](static/talk_with_me.png)  
+
+- **Chatbot**  
+  ![Chatbot](static/chat.png)  
+
+- **Image Analysis**  
+  ![Image Analysis](static/image_analysis.png)  
+
+---
+
+## Challenges and Solutions  
+
+### Updated Challenges:  
+1. **Emotion and Attention Detection:**  
+   - **Problem:** Implementing webcam-based facial analysis for real-time emotion detection.  
+   - **Solution:** Leveraged OpenCV and fine-tuned models to enhance accuracy and responsiveness.  
+
+2. **Feedback Personalization:**  
+   - **Problem:** Displaying personalized feedback based on user login state.  
+   - **Solution:** Integrated dynamic feedback rendering with user-specific data.  
+
+3. **Voice Assistant Enhancements:**  
+   - **Problem:** Aligning emotion detection with natural language responses.  
+   - **Solution:** Synced detected emotions with the assistant’s tone and response.  
+
+4. **CSS and UI Design:**  
+   - **Problem:** Improving user interface themes for accessibility.  
+   - **Solution:** Upgraded CSS themes, added instructions (home.png), and ensured responsive design.  
+
+---
+
+## Contributing  
+Contributions are welcome!  
+
+### Steps to Contribute:  
+1. **Fork the Repository:**  
+   ```bash
+   git fork https://github.com/vinayak1729-web/chikitsa_ai
+   ```  
+
+2. **Create Your Feature Branch:**  
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```  
+
+3. **Commit Your Changes:**  
+   ```bash
+   git commit -m 'Add some AmazingFeature'
+   ```  
+
+4. **Push to the Branch:**  
+   ```bash
+   git push origin feature/AmazingFeature
+   ```  
+
+5. **Open a Pull Request:**  
+
+---
+
+## License  
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+

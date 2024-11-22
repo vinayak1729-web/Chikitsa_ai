@@ -182,7 +182,7 @@ def thank_you():
     open_ended_str = csv_to_string("responses/open_end_questions_responses.csv")
     default = "This is my assessment of close-ended questions and open-ended questions. Please provide feedback on me."
     judge_gemini = gemini_chat(default + " " + close_ended_str + " " + open_ended_str)
-    mainprompt="Please summarize the following content in 200 words. Analyze my strengths and weaknesses, identify areas for improvement, and provide actionable suggestions on how to improve. Also, give an honest assessment of my mental health and well-being based on the content provided. Keep in mind that you are my digital psychiatrist, my best friend, and a well-rounded expert in various fields of knowledge. Your feedback should be constructive, empathetic, and based on your understanding of the information provided. Help me grow by offering insights on how I can become a better version of myself, both personally and professionally. at last summarize in only 200 words or less then it add some emogies for representing more connection "
+    mainprompt="Please summarize the following content in 150 words. Analyze my strengths and weaknesses, identify areas for improvement, and provide actionable suggestions on how to improve. Also, give an honest assessment of my mental health and well-being based on the content provided. Keep in mind that you are my digital psychiatrist, my best friend, and a well-rounded expert in various fields of knowledge. Your feedback should be constructive, empathetic, and based on your understanding of the information provided. Help me grow by offering insights on how I can become a better version of myself, both personally and professionally. at last summarize in only 150 words or less then it add some emogies for representing more connection "
     summarize = gemini_chat(mainprompt+judge_gemini)
     return render_template('thank_you.html', judge_gemini=summarize, user_name=user_name ,completejudege=judge_gemini)
 
@@ -310,6 +310,7 @@ def image_analysis():
             response = model.generate_content(prompt_parts)
             analysis = response.text
     return render_template('image_analysis.html', analysis=analysis)
+
 
 from fer import FER
 # # Initialize emotion detection model
